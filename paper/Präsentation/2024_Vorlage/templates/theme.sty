@@ -1,0 +1,113 @@
+%% LaTeX-Beamer template for FZI design
+%% by Matthias Huber
+%%
+%% version 0.2
+%%
+%% Problems, bugs and comments to
+%% huber@fzi.de
+
+
+
+% Command for setting the language, default to 'english' if not defined
+%\newcommand{\langoption}{english}
+
+\usepackage{ifthen} %For choosing the language, see below
+
+% Choose language using ifthen
+\ifthenelse{\equal{\langoption}{english}}{
+    \usepackage[english,ngerman]{babel}
+}{
+    \ifthenelse{\equal{\langoption}{german}}{
+        \usepackage[german]{babel}
+    }{
+        \usepackage[\langoption]{babel}
+    }
+}
+
+
+
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[\langoption]{cleveref}
+
+
+
+\usepackage{xcolor}
+\usepackage{templates/colors}
+
+\usepackage[scaled=.92]{helvet}
+
+\usepackage{titlesec}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[ngerman]{babel}
+
+\usepackage[includeheadfoot,top=0cm, bottom=4cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{transparent}
+\usepackage{lastpage}
+
+\setlist[itemize]{noitemsep,nolistsep}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+
+% green captions
+\titleformat{\section}
+{\color{fzi-green}\Large\bfseries}
+{\thesection\hskip 8pt\hskip 8pt}
+{0pt}
+{}
+
+\titleformat{\subsection}
+{\color{fzi-green}\large\bfseries}
+{\thesubsection\hskip 8pt\hskip 8pt}
+{0pt}
+{}
+
+% title 
+\title{
+\textcolor{fzi-green}{\dokumenttitel}
+\vspace{1em}\\
+\textcolor{fzi-gray}{\untertitel}
+\vspace{3em}\\
+\includegraphics[width=37mm]{logos/FZI-Logo.pdf}
+\vspace{1em}\\
+\textcolor{fzi-green}{FZI Forschungszentrum Informatik}
+\vspace{0.75em}\\
+\textcolor{fzi-gray}{\normalsize \textnormal{Version \version}}
+\vspace{0.34em}\\
+\textcolor{fzi-gray}{\normalsize \textnormal{Datum: \datum}}
+}
+
+\date{}
+
+
+% header and footer
+\fancyhead{}
+\fancyfoot{}
+\setlength{\headheight}{2.75cm} 
+
+\fancyhead[L]{\small \textcolor{fzi-green}{\dokumenttitel} \vspace{0.5em} \\ \textcolor{fzi-gray}{Gültig ab: \validfrom}}
+\fancyhead[C]{\small \textcolor{fzi-gray}{Bearbeitet von: \autor}}
+\fancyhead[R]{\small \textcolor{fzi-gray}{Version: \version} \hspace{4em} \includegraphics[width=11.3mm]{logos/FZI-Logo.pdf}}
+
+\fancyfoot[L]{\small \textcolor{fzi-gray}{\dokumenttitel}}
+\fancyfoot[C]{\small \textcolor{fzi-gray}{\state}}
+\fancyfoot[R]{\small \textcolor{fzi-gray}{Seite \thepage \, von \pageref{LastPage} }}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% FZI-point in enumerations
+\renewcommand{\labelitemi}{
+	\begin{pgfpicture}{-0.4mm}{-0.4mm}{2mm}{2mm}
+		\pgfpathrectangle{\pgfpoint{0mm}{0mm}}{\pgfpoint{1.5mm}{1.5mm}}
+		\color{fzi-green}
+		\pgfusepath{fill}
+	\end{pgfpicture}
+}
+\renewcommand{\labelitemii}{\labelitemi}
+\renewcommand{\labelitemiii}{\labelitemi}
+\renewcommand{\labelitemiv}{\labelitemi}

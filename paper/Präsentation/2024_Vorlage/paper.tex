@@ -1,0 +1,77 @@
+%% LaTeX-Beamer template for FZI design
+%% by Matthias Huber
+%%
+%% version 0.4
+%%
+%% Problems, bugs and comments to
+%% hoellig@fzi.de
+
+\documentclass[parskip=true]{scrartcl}
+%% Change the language of document here 
+\newcommand{\langoption}{english}
+\usepackage{templates/theme}
+\usepackage{lipsum}
+\usepackage{todonotes}	
+
+\newboolean{titel} 
+\setboolean{titel}{true}
+\newboolean{inhalt} 
+\setboolean{inhalt}{true}
+\newboolean{headfoot} 
+\setboolean{headfoot}{true}
+
+% Dokumentangaben
+\newcommand{\dokumenttitel}{Real-World Challenges in Data Science and Analytics}
+\newcommand{\untertitel}{[Thema]}
+\newcommand{\version}{0.1}
+\newcommand{\datum}{\today}
+\newcommand{\autor}{[Vorname Nachname]}
+\newcommand{\validfrom}{}%leer
+\newcommand{\state}{}%leer
+
+%Titelseite?
+%\setboolean{titel}{false} 
+%Inhaltsverzeichnis?
+%\setboolean{inhalt}{false}
+%FZI Kopf- und Fußzeile?
+\setboolean{headfoot}{false}
+
+\begin{document}
+
+% Titel
+\ifthenelse{\boolean{titel}}{
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+}{}
+
+\ifthenelse{\boolean{headfoot}}{
+\pagestyle{fancy}
+}{\pagestyle{plain}}
+
+% Inhaltsverzeichnis
+\ifthenelse{\boolean{inhalt}}{
+\newpage
+\begin{spacing}{1.25}
+\tableofcontents
+\end{spacing}
+\newpage
+}{}
+
+% Dokumenteninhalt
+\section{Überschrift 1}\label{sec:1}
+\subsection{Überschrift 2}
+Fließtext
+\begin{itemize}
+	\item Aufzählung \Cref{sec:1}
+	\item Aufzählung \todo{Anmerkung}
+	\item Aufzählung
+	\begin{itemize}
+	 \item Aufzählung Ebene 2
+	 \item Aufzählung Ebene 2
+	\end{itemize}
+\item Aufzählung
+\end{itemize}
+\lipsum[1-5]
+
+\end{document}
