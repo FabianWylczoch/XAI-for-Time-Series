@@ -234,6 +234,20 @@ class ClassificationModel():
         grad_cam_map = grad_cam_map - grad_cam_map.min()
         grad_cam_map = grad_cam_map / grad_cam_map.max()
         return grad_cam_map.cpu().numpy()
+    
+
+    def save_model(self, filepath):
+        # Save the model's state dictionary and other components
+        torch.save({'model_state_dict': self.model.state_dict()}, filepath)
+
+
+    def load_model(self, filepath):    
+        # Load the model's state dictionary
+        self.model.load_state_dict(torch.load(filepath)['model_state_dict'])
+        
+        # Move model to the appropriate device (CPU or GPU)
+        self.model.to("cpu")  # Replace "cpu" with "cuda" if needed
+
         
 
         
